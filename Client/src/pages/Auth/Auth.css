@@ -13,11 +13,11 @@
 }
 
 .a-left {
-    gap: 2rem;
+    gap: 1rem;
 }
 .a-left > img {
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
 }
 .Webname > h1 {
     font-size: 3rem;
@@ -74,8 +74,8 @@
 
 .authForm {
     background-color: var(--cardColor);
-    border-radius: 1rem;
-    padding: 1rem;
+    border-radius: 2rem;
+    padding: 3rem;
 }
 
 .authForm > div {
