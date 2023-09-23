@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Auth.css';
 import Logo from '../../img/logo.png';
-import { Cursor } from 'mongoose';
+// import { Cursor } from 'mongoose';
 
 const Auth = () => {
-    const [isSignup, setIsSignUp] = useState(false);
+    const [isSignup, setIsSignUp] = useState(true);
 
     const [data, setData] = useState({
         firstname: '',
@@ -14,7 +14,33 @@ const Auth = () => {
         username: '',
     });
 
-    const handleChange = () => {};
+    const [confirmPass, setConfirmPass] = useState(true);
+
+    const handleChange = (event) => {
+        setData({ ...data, [event.target.name]: event.target.value });
+    };
+    //handle change in input
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (isSignup) {
+            if (data.password !== data.confirmpassword) {
+                setConfirmPass(false);
+            }
+        }
+    };
+    //reset form
+    const resetForm = () => {
+        setConfirmPass(true);
+        setData({
+            firstname: '',
+            lastname: '',
+            password: '',
+            confirmpassword: '',
+            username: '',
+        });
+    };
+
     return (
         <div className="Auth">
             {/* Left Side */}
@@ -27,7 +53,7 @@ const Auth = () => {
             </div>
             {/* Right Side */}
             <div className="a-right">
-                <form className="infoForm authForm">
+                <form className="infoForm authForm" onSubmit={handleSubmit}>
                     <h3>{isSignup ? 'Sign up' : 'Login'}</h3>
 
                     {isSignup && (
@@ -37,12 +63,16 @@ const Auth = () => {
                                 placeholder="First Name"
                                 className="infoInput"
                                 name="firstname"
+                                onChange={handleChange}
+                                value={data.firstname}
                             />
                             <input
                                 type="text"
                                 placeholder="Last Name"
                                 className="infoInput"
                                 name="lastname"
+                                onChange={handleChange}
+                                value={data.lastname}
                             />
                         </div>
                     )}
@@ -53,6 +83,8 @@ const Auth = () => {
                             className="infoInput"
                             name="username"
                             placeholder="Usernames"
+                            onChange={handleChange}
+                            value={data.username}
                         />
                     </div>
 
@@ -62,22 +94,38 @@ const Auth = () => {
                             className="infoInput"
                             name="password"
                             placeholder="Password"
+                            onChange={handleChange}
+                            value={data.password}
                         />
                         {isSignup && (
                             <input
                                 type="text"
                                 className="infoInput"
-                                name="confirmpass"
+                                name="confirmpassword"
                                 placeholder="Confirm Password"
+                                onChange={handleChange}
+                                value={data.confirmpasspword}
                             />
                         )}
                     </div>
+                    <span
+                        style={{
+                            display: confirmPass ? 'none' : 'block',
+                            color: 'red',
+                            fontSize: '12px',
+                            alignContent: 'flex-end',
+                            marginRight: '5px',
+                        }}
+                    >
+                        * Confirm Password is not same
+                    </span>
 
                     <div>
                         <span
                             style={{ fontSize: '12px', cursor: 'pointer' }}
                             onClick={() => {
                                 setIsSignUp((prev) => !prev);
+                                resetForm();
                             }}
                         >
                             {isSignup
