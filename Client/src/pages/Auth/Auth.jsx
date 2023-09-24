@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './Auth.css';
 import Logo from '../../img/logo.png';
+import { useDispatch } from 'react-redux';
 // import { Cursor } from 'mongoose';
 
 const Auth = () => {
     const [isSignup, setIsSignUp] = useState(true);
+    const dispatch = useDispatch();
 
     const [data, setData] = useState({
         firstname: '',
