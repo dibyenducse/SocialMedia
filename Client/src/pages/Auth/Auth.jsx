@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Auth.css';
 import Logo from '../../img/logo.png';
 import { useDispatch } from 'react-redux';
+import { logIn, signUp } from '../../actions/AuthAction';
 // import { Cursor } from 'mongoose';
 
 const Auth = () => {
@@ -26,9 +27,11 @@ const Auth = () => {
         e.preventDefault();
 
         if (isSignup) {
-            if (data.password !== data.confirmpassword) {
-                setConfirmPass(false);
-            }
+            data.password === data.confirmpasswod
+                ? dispatch(signUp(data))
+                : setConfirmPass(false);
+        } else {
+            dispatch(logIn(data));
         }
     };
     //reset form
