@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import AuthRoute from './routes/AuthRoute.js';
 import UserRoute from './routes/UserRoute.js';
 import PostRoute from './routes/PostRoute.js';
@@ -12,7 +13,7 @@ const app = express();
 //Middlewares
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
-
+app.use(cors());
 //uses of routes
 app.use('/auth', AuthRoute);
 app.use('/user', UserRoute);
