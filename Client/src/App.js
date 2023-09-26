@@ -3,7 +3,7 @@ import './App.css';
 import Auth from './pages/Auth/Auth';
 // import Profile from './pages/Profile/Profile';
 import Home from './pages/home/Home';
-import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
     const user = useSelector((state) => state.authReducer.authData);

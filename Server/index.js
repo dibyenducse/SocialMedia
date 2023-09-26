@@ -6,6 +6,7 @@ import cors from 'cors';
 import AuthRoute from './routes/AuthRoute.js';
 import UserRoute from './routes/UserRoute.js';
 import PostRoute from './routes/PostRoute.js';
+import uploadRoute from './routes/UploadRoute.js';
 //Routes
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(cors());
 app.use('/auth', AuthRoute);
 app.use('/user', UserRoute);
 app.use('/post', PostRoute);
+app.use('/upload', uploadRoute);
 
 dotenv.config();
 
