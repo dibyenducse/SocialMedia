@@ -45,7 +45,7 @@ function PostShare() {
             }
         }
 
-        dispatch(uploadPost);
+        dispatch(uploadPost(newPost));
     };
 
     return (
