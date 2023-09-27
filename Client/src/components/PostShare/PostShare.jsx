@@ -6,7 +6,7 @@ import { UilPlayCircle } from '@iconscout/react-unicons';
 import { UilLocationPoint } from '@iconscout/react-unicons';
 import { UilSchedule } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
-import { uploadImage } from '../../actions/uploadAction';
+import { uploadImage, uploadPost } from '../../actions/uploadAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 function PostShare() {
@@ -44,6 +44,8 @@ function PostShare() {
                 console.log(error);
             }
         }
+
+        dispatch(uploadPost);
     };
 
     return (

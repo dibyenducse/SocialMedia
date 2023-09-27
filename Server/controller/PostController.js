@@ -9,7 +9,7 @@ export const createPost = async (req, res) => {
 
     try {
         const post = await newPost.save();
-        res.status(200).json('Post Created Successfully');
+        res.status(200).json(newPost);
         console.log(post);
     } catch (error) {
         res.status(500).json(error);
