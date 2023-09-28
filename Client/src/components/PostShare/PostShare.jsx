@@ -10,6 +10,7 @@ import { uploadImage, uploadPost } from '../../actions/uploadAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 function PostShare() {
+    const loading = useSelector((state) => state.postReducer.uploading);
     const dispatch = useDispatch();
     const [image, setImage] = useState(null);
     const imageRef = useRef();
@@ -22,6 +23,11 @@ function PostShare() {
 
             setImage(img);
         }
+    };
+
+    const reset = () => {
+        setImage(null);
+        desc.current.value = '';
     };
 
     const handleSubmit = (e) => {
@@ -46,6 +52,7 @@ function PostShare() {
         }
 
         dispatch(uploadPost(newPost));
+        reset();
     };
 
     return (
@@ -82,8 +89,12 @@ function PostShare() {
                         <UilSchedule />
                         Shedule
                     </div>
-                    <button className="button ps-button" onClick={handleSubmit}>
-                        Share
+                    <button
+                        className="button ps-button"
+                        onClick={handleSubmit}
+                        disabled={loading}
+                    >
+                        {loading ? 'Uploading...' : 'Share'}
                     </button>
                     <div style={{ display: 'none' }}>
                         <input
