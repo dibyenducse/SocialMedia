@@ -15,9 +15,11 @@ function Posts() {
 
     return (
         <div className="Posts">
-            {posts.map((post, id) => {
-                return <Post data={post} id={id} />;
-            })}
+            {loading
+                ? 'Fetching posts...'
+                : posts.map((post, id) => {
+                      return <Post data={post} id={id} />;
+                  })}
         </div>
     );
 }

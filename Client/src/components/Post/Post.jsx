@@ -12,7 +12,7 @@ const Post = ({ data }) => {
         <div className="Post">
             <img
                 src={
-                    data.img
+                    data.image
                         ? process.env.REACT_APP_PUBLIC_FOLDER + data.image
                         : ''
                 }
