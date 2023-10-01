@@ -3,11 +3,11 @@ import './ProfileCard.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ProfileCard = () => {
+const ProfileCard = ({ location }) => {
     const { user } = useSelector((state) => state.authReducer.authData);
+    const posts = useSelector((state) => state.postReducer.posts);
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const ProfilePage = false;
     return (
         <div className="ProfileCard">
             <div className="ProfileImages">
@@ -30,8 +30,7 @@ const ProfileCard = () => {
             </div>
             <div className="ProfileName">
                 <span>
-                    {user.firstname}
-                    {user.lastname}
+                    {user.firstname} {user.lastname}
                 </span>
                 <span>{user.workAt ? user.workAt : 'Write your bio'}</span>
             </div>
@@ -47,11 +46,17 @@ const ProfileCard = () => {
                         <span>{user.followers.length}</span>
                         <span>Followers</span>
                     </div>
-                    {ProfilePage && (
+                    {location === 'profilePage' && (
                         <>
                             <div className="vl"></div>
                             <div className="follow">
-                                <span>3</span>
+                                <span>
+                                    {
+                                        posts.filter(
+                                            (post) => post.userId === user._id
+                                        ).length
+                                    }
+                                </span>
                                 <span>Posts</span>
                             </div>
                         </>
@@ -59,7 +64,7 @@ const ProfileCard = () => {
                 </div>
                 <hr />
             </div>
-            {ProfilePage ? (
+            {location === 'profilePage' ? (
                 ''
             ) : (
                 <span>
