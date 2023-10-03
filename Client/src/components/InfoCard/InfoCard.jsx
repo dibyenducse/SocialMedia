@@ -8,15 +8,16 @@ import * as UserAPi from '../../api/UserRequest';
 import { logOut } from '../../actions/AuthAction';
 
 const InfoCard = () => {
-    const [modalOpened, setModalOpened] = useState(false);
-
     const dispatch = useDispatch();
     const params = useParams();
-
+    const [modalOpened, setModalOpened] = useState(false);
     const profileUserId = params.id;
     const [profileUser, setProfileUser] = useState({});
-
     const { user } = useSelector((state) => state.authReducer.authData);
+
+    const handleLogOut = () => {
+        dispatch(logOut());
+    };
 
     useEffect(() => {
         const fetchProfileUser = async () => {
@@ -32,10 +33,6 @@ const InfoCard = () => {
         fetchProfileUser();
     }, [user]);
 
-    const handleLogOut = () => {
-        dispatch(logOut());
-    };
-
     return (
         <div className="InfoCard">
             <div className="infoHead">
@@ -50,6 +47,7 @@ const InfoCard = () => {
                         <ProfileModal
                             modalOpened={modalOpened}
                             setModalOpened={setModalOpened}
+                            data={user}
                         />
                     </div>
                 ) : (
@@ -66,13 +64,13 @@ const InfoCard = () => {
                 <span>
                     <b>Lives In </b>
                 </span>
-                <span>{profileUser.livesin}</span>
+                <span>{profileUser.livesIn}</span>
             </div>
             <div className="info">
                 <span>
                     <b>Works at </b>
                 </span>
-                <span>{profileUser.worksout}</span>
+                <span>{profileUser.worksAt}</span>
             </div>
             <button className="button logout-button" onClick={handleLogOut}>
                 Logout
