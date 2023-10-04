@@ -108,10 +108,10 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
                     <input
                         type="text"
                         className="infoInput"
-                        name="livesin"
+                        name="livesIn"
                         placeholder="LIves in"
                         onChange={handleChange}
-                        value={formData.livesin}
+                        value={formData.livesIn}
                     />
 
                     <input
