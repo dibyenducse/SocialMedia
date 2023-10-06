@@ -3,15 +3,20 @@ import './Posts.css';
 import Post from '../Post/Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTimelinePosts } from '../../actions/postAction';
+import { useParams } from 'react-router-dom';
 
-function Posts() {
+const Posts = () => {
+    const params = useParams();
     const dispactch = useDispatch();
     const { user } = useSelector((state) => state.authReducer.authData);
-    const { posts, loading } = useSelector((state) => state.postReducer);
+    let { posts, loading } = useSelector((state) => state.postReducer);
 
     useEffect(() => {
         dispactch(getTimelinePosts(user._id));
     }, []);
+
+    if (!posts) return 'no posts';
+    if (params.id) posts = posts.filter((post) => post.userId === params.id);
 
     return (
         <div className="Posts">
@@ -22,6 +27,6 @@ function Posts() {
                   })}
         </div>
     );
-}
+};
 
 export default Posts;

@@ -41,8 +41,10 @@ export const User = ({ person }) => {
                 }
                 onClick={handleFollow}
             >
-                Follow
+                {following ? 'Unfollow' : 'Follow'}
             </button>
         </div>
     );
 };
+
+export default User;
